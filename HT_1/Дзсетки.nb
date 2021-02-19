@@ -1,0 +1,31 @@
+(*так обозначаются комментарии*)
+Needs["NDSolve`FEM`"];(*подключение пакета метода конечных элементов*)
+
+
+torus = Import["C:\\Users\\Руслан\\Desktop\\Torus.stl", 
+   "GraphicsComplex"];
+shuttle = 
+  Import["C:\\Users\\Руслан\\Desktop\\Shuttle.stl", "GraphicsComplex"];
+(*выше - импорт stl моделей тора и челнока и присваивание их \
+соответствующим переменным*)
+(*GraphicsComplex - формат в виде списка вершин и троек вершин, \
+образующих треугольник - элемент сетки*)
+MeshTorus = ToElementMesh[DiscretizeGraphics[torus]];
+MeshShuttle = ToElementMesh[DiscretizeGraphics[shuttle]];
+(*выше - непосредственное построение пространственной сетки в виде \
+тетраэдров по умолчанию*)
+MeshTorus[
+ "Wireframe"[
+  "ElementMeshDirective" -> 
+   Directive[EdgeForm[Opacity[0.5]], FaceForm[]], 
+  "MeshElement" -> "MeshElements"]]
+MeshShuttle[
+ "Wireframe"[
+  "ElementMeshDirective" -> 
+   Directive[EdgeForm[Opacity[0.5]], FaceForm[]], 
+  "MeshElement" -> "MeshElements"]]
+(*наконец здесь я прошу отобразить сетки вызвав команду "Wireframe" и \
+установил параметры прозрачность - Opacity[] и отсутствие граней - \
+FaceForm["Empty"]*)
+(*на выходе кода получается 2 3D сетки*)
+
