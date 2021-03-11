@@ -29,8 +29,6 @@ collision[point_, x_] :=
 
 
 (*чисто графическая функция - создаются вспышки от взрыва челнока :3*)
-
-
 flashes[point_, x_] := 
  If[point[[1]] < x, {Opacity[0.5], 
    RandomChoice[{Yellow, Red, Orange}], 
